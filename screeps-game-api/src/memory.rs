@@ -50,6 +50,7 @@
 //! from those objects will also result in a `MemoryReference` which instead
 //! points at the root of this object's memory.
 //!
+use std::error::Error;
 use std::fmt;
 
 use stdweb::{JsSerialize, Reference, Value};
@@ -69,8 +70,11 @@ impl fmt::Display for UnexpectedTypeError {
     }
 }
 
+impl Error for UnexpectedTypeError {}
+
 // TODO: do we even need this over just a raw 'Reference'?
 /// A [`Reference`] to a screeps memory object
+#[derive(PartialEq, Eq, Clone)]
 pub struct MemoryReference(Reference);
 
 impl AsRef<Reference> for MemoryReference {
