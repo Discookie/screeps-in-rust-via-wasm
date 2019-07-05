@@ -221,7 +221,7 @@ impl MemoryReference {
         .try_into()
     }
 
-    pub fn get_path<T>(&self, path: &str) -> Result<T, ConversionError>
+    pub fn path_get<T>(&self, path: &str) -> Result<T, ConversionError>
     where
         T: TryFrom<Value, Error = ConversionError>,
     {
